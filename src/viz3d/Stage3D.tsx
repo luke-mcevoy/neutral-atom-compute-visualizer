@@ -1,9 +1,18 @@
 import { type ReactNode, Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import { LookingAt, type KeyItem } from '../components/LookingAt.tsx';
+
+function SizedComposer({ children }: { children: ReactNode }) {
+  const { size } = useThree();
+  return (
+    <EffectComposer key={`${Math.round(size.width)}x${Math.round(size.height)}`} multisampling={0}>
+      {children}
+    </EffectComposer>
+  );
+}
 
 export function Stage3D({
   children,
@@ -28,12 +37,14 @@ export function Stage3D({
         ) : null}
         <Canvas
           dpr={[1, 2]}
+          resize={{ scroll: false, debounce: 0 }}
           camera={{ fov: 38, position: camera, near: 0.05, far: 80 }}
           gl={{
             antialias: true,
             toneMapping: THREE.ACESFilmicToneMapping,
             toneMappingExposure: 1.15,
           }}
+          style={{ width: '100%', height: '100%', display: 'block' }}
         >
           <color attach="background" args={['#07080b']} />
           <fog attach="fog" args={['#07080b', 10, 26]} />
@@ -51,10 +62,10 @@ export function Stage3D({
             maxDistance={18}
             target={[0, 0.15, 0]}
           />
-          <EffectComposer>
+          <SizedComposer>
             <Bloom intensity={0.55} luminanceThreshold={0.18} luminanceSmoothing={0.4} mipmapBlur />
             <Vignette eskil={false} offset={0.15} darkness={0.65} />
-          </EffectComposer>
+          </SizedComposer>
         </Canvas>
         <p className="stage3d-hint">drag to orbit · scroll to zoom</p>
       </div>
