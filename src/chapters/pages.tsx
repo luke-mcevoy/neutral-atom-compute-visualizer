@@ -7,6 +7,7 @@ import { AODShuttle } from '../viz/AODShuttle.tsx';
 import { ArrayHero } from '../viz/ArrayHero.tsx';
 import { CameraMeasurement } from '../viz/CameraMeasurement.tsx';
 import { AtomLevels } from '../viz/AtomLevels.tsx';
+import { BelowThreshold } from '../viz/BelowThreshold.tsx';
 import { BlochDrive } from '../viz/BlochDrive.tsx';
 import { BlockadeDynamics } from '../viz/BlockadeDynamics.tsx';
 import { CodePrimer } from '../viz/CodePrimer.tsx';
@@ -496,6 +497,7 @@ export const CHAPTERS: Chapter[] = [
           </p>
         </Primer>
         <SurfaceCode />
+        <BelowThreshold />
         <Defense>
           <p>
             Distance-5 data block, fresh ancilla block each round, up to five rounds.
