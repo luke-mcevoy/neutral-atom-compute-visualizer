@@ -230,6 +230,19 @@ article p em { font-style: italic; color: inherit; }
   color: var(--faint);
 }
 .primer { padding: 0; }
+.plain-voice {
+  margin: 0 0 22px;
+  padding: 14px 18px 10px;
+  background: var(--bg-2);
+  border-left: 3px solid #f5b942;
+  border-radius: 0 8px 8px 0;
+}
+.plain-voice .voice-label { color: #f5b942; }
+.plain-voice p {
+  font-size: 16.5px;
+  line-height: 1.68;
+  color: var(--cream);
+}
 .defense-voice {
   margin-top: 20px;
   padding-top: 16px;

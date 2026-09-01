@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Assumption, Claim, Note } from '../components/Claim.tsx';
 import { Eq, Sym } from '../components/Eq.tsx';
-import { Defense, Primer } from '../components/Voice.tsx';
+import { Defense, Plain, Primer } from '../components/Voice.tsx';
 import { PAPER } from '../data/paper.ts';
 import { AODShuttle } from '../viz/AODShuttle.tsx';
 import { ArrayHero } from '../viz/ArrayHero.tsx';
@@ -40,6 +40,18 @@ export const CHAPTERS: Chapter[] = [
     kicker: 'A computer whose bits are individual atoms',
     body: (
       <>
+        <Plain>
+          <p>
+            The whole idea in one paragraph. A team at Harvard and MIT built a computer whose
+            memory is not a silicon chip but 448 individual atoms floating in a vacuum chamber,
+            each held in place by a pinpoint of laser light. To compute, they poke the atoms with
+            flashes of light; to read out the answer, they photograph them. The catch is that
+            atoms are terrible at remembering — left alone, they scramble in a fraction of a
+            second. So the real achievement is not making atoms compute. It is building a machine
+            that catches and fixes the atoms&rsquo; mistakes faster than the mistakes pile up.
+            This guide walks through how you would build one, piece by piece.
+          </p>
+        </Plain>
         <Primer>
           <p className="lede">
             You already know what a computer is: a machine that holds a state, changes that state
@@ -92,6 +104,19 @@ export const CHAPTERS: Chapter[] = [
     kicker: 'Two energy levels, and a direction between them',
     body: (
       <>
+        <Plain>
+          <p>
+            A normal computer bit is a light switch: off or on, 0 or 1. A quantum bit — a
+            qubit — is more like a spinning globe. It can point to 0 (call that the north pole),
+            to 1 (the south pole), or lean anywhere in between. A calculation is a sequence of
+            precise turns of that globe. The strange part: when you finally look, you never see
+            the in-between. The globe snaps to north or south, with odds set by where it was
+            leaning. In this machine each globe is one atom — &ldquo;north vs south&rdquo; is its
+            outer electron sitting in one of two energy states — and the turns are done with
+            laser pulses. The animation below is exactly this: watch a pulse of light turn one
+            atom&rsquo;s globe.
+          </p>
+        </Plain>
         <Primer>
           <p>
             A classical bit is a switch: off or on. Physics already gave you a better object — any
@@ -133,9 +158,23 @@ export const CHAPTERS: Chapter[] = [
     id: 'rubidium',
     num: '02',
     title: 'The atom',
-    kicker: 'One nucleus, one valence electron, two useful sizes',
+    kicker: 'One loose outer electron, two useful sizes',
     body: (
       <>
+        <Plain>
+          <p>
+            Step one of the build: pick your atom. They chose rubidium, a soft silvery metal in
+            the same chemical family as sodium. Atoms of one element are all perfectly identical,
+            which is a luxury no chip factory has — every bit in this computer is exactly the
+            same, with zero manufacturing defects. A rubidium atom has one loosely held outer
+            electron, and that electron is the moving part of the whole machine. It has two
+            useful modes. Normally it hugs the atom tightly: compact, calm, good for storing
+            information. Hit it with the right laser and it balloons out to roughly a thousand
+            times its size — big enough to make its presence felt by a neighbouring atom across
+            the gap. Small means memory; puffed up means talking to the neighbours. The figure
+            below shows both sizes.
+          </p>
+        </Plain>
         <Primer>
           <p>
             Rubidium-87 is an alkali: a closed shell plus one 5s electron. That electron is a
@@ -171,10 +210,23 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 'light',
     num: '03',
-    title: 'Light as a Hamiltonian',
-    kicker: 'Off-resonant light still pushes. That push is the whole toolbox.',
+    title: 'Light is the toolbox',
+    kicker: 'One laser trick traps atoms, turns qubits, and shields bystanders',
     body: (
       <>
+        <Plain>
+          <p>
+            You cannot pick up an atom with metal tweezers, so everything in this machine is done
+            with light. Laser light tuned slightly away from the atom&rsquo;s natural colour is
+            not absorbed — instead it gently pushes and squeezes the atom&rsquo;s energy levels.
+            That one trick, used three ways, is the entire toolbox. Focus the light to a pinpoint
+            and an atom falls in and stays: a trap. Shine two carefully mismatched beams and the
+            qubit&rsquo;s globe rotates: a gate. Flood a region with a third colour and the atoms
+            there go deaf to stray light meant for their neighbours: a shield. Everything you
+            will see from here on — holding, moving, computing, protecting — is laser light doing
+            one of these three jobs.
+          </p>
+        </Plain>
         <Primer>
           <p>
             Shine light on an atom far from resonance and you do not absorb photons so much as
@@ -211,9 +263,23 @@ export const CHAPTERS: Chapter[] = [
     id: 'rydberg',
     num: '04',
     title: 'How two atoms talk',
-    kicker: 'A fat atom shifts its neighbour. That shift is a controlled-Z.',
+    kicker: 'A ballooned atom blocks its neighbour. That block is an if–then gate.',
     body: (
       <>
+        <Plain>
+          <p>
+            Now the key trick: how do two atoms run an &ldquo;if&ndash;then&rdquo;? Puff one atom
+            up into its balloon state and it changes the rules for its neighbour: the
+            neighbour&rsquo;s laser stops working, because the first atom&rsquo;s presence shifts
+            the exact energy the laser was aimed at. It is like two people trying to inflate
+            balloons inside one phone booth — once the first balloon fills the space, the second
+            cannot inflate. &ldquo;B does the thing only if A did not&rdquo; is a conditional
+            operation: a logic gate, the quantum counterpart of a transistor. Each one takes
+            about a quarter of a millionth of a second. The two figures below show the energy
+            picture, and then the actual moment-by-moment tug-of-war between the two atoms while
+            the laser pulse plays.
+          </p>
+        </Plain>
         <Primer>
           <p>
             Two ordinary 5s atoms a few microns apart barely notice each other. Promote one
@@ -251,6 +317,19 @@ export const CHAPTERS: Chapter[] = [
     kicker: 'A hologram is a chip. They reprint it every time the layout changes.',
     body: (
       <>
+        <Plain>
+          <p>
+            You need hundreds of those pinpoint traps, arranged in exact patterns. Building
+            hundreds of separate lasers would be absurd, so they use one laser and one
+            programmable screen. The screen subtly delays different parts of the beam passing
+            through it, and a lens then focuses the sculpted beam into hundreds of bright
+            pinpoints at once — a hologram whose &ldquo;image&rdquo; is a grid of tweezers, one
+            atom per dot. Want a different layout? Display a different pattern on the screen. It
+            is a projector, except the picture it projects is the computer&rsquo;s motherboard.
+            In the figure below you can click to add a trap and watch the required screen pattern
+            change.
+          </p>
+        </Plain>
         <Primer>
           <p>
             A tightly focused red-detuned laser is an optical tweezer: the AC Stark shift is
@@ -280,9 +359,22 @@ export const CHAPTERS: Chapter[] = [
     id: 'aod',
     num: '06',
     title: 'How you move them mid-circuit',
-    kicker: 'A frequency is a position. A chirp is a trajectory.',
+    kicker: 'A claw machine made of light rearranges the wiring on the fly',
     body: (
       <>
+        <Plain>
+          <p>
+            Here is the feature that makes this machine special: it physically carries its atoms
+            around in the middle of a calculation. A second set of steerable tweezers works like
+            an arcade claw machine — it reaches in, lifts a chosen row of atoms out of their
+            parking spots, glides them across the chip, and sets them down next to new partners.
+            The steering is done by sound waves inside a crystal, which bend the laser beam by an
+            angle you can dial up and down with radio signals — no moving mirrors, so it is fast
+            and perfectly repeatable. Whichever atoms need to interact next simply get picked up
+            and placed side by side. In most other quantum computers, each qubit is soldered to
+            its spot forever; this one rearranges its own wiring on the fly.
+          </p>
+        </Plain>
         <Primer>
           <p>
             An acousto-optic deflector is a radio-driven diffraction grating. Tone frequency
@@ -309,9 +401,21 @@ export const CHAPTERS: Chapter[] = [
     id: 'control',
     num: '07',
     title: 'Who plays the lasers',
-    kicker: 'Five waveform generators, one 6.8 GHz phase, memory as a depth limit',
+    kicker: 'No CPU — the program is a synchronized recording played at the atoms',
     body: (
       <>
+        <Plain>
+          <p>
+            Who conducts all of this? Not a processor issuing instructions one at a time. The
+            whole program — every trap movement, every gate flash, every globe rotation — is
+            composed in advance as a set of electrical waveforms, like the tracks of a
+            multi-track music recording, and played out through five synchronized signal
+            generators locked to a single clock. If two tracks slip against each other by even a
+            few billionths of a second, the &ldquo;note&rdquo; played on the atoms becomes a
+            different, wrong operation. The program here is less like software and more like a
+            player-piano roll for lasers.
+          </p>
+        </Plain>
         <Primer>
           <p>
             Nothing here is a conventional CPU issuing “CNOT qubit 17.” The circuit is a
@@ -340,9 +444,21 @@ export const CHAPTERS: Chapter[] = [
     id: 'zones',
     num: '08',
     title: 'Four rooms, one processor',
-    kicker: 'Light that entangles must not light that images',
+    kicker: 'Gates, memory, reading, and spare atoms each get their own room',
     body: (
       <>
+        <Plain>
+          <p>
+            The chip needs a floorplan, for one blunt reason: the different kinds of light do not
+            get along. The bright light used to photograph atoms would wreck the delicate states
+            of atoms that are storing data, and gate flashes would scramble innocent bystanders.
+            So the array is divided into rooms — a storage room for memory, a gate room where
+            atoms interact, a reading room with the camera, and a pantry of spare atoms — and the
+            claw machine shuttles atoms between rooms as needed. The animation below plays one
+            full working cycle: move in, flash the gates, read the helpers, and fetch a
+            replacement for an atom that went missing.
+          </p>
+        </Plain>
         <Primer>
           <p>
             You cannot do everything to every atom at once. Rydberg light that performs a
@@ -374,6 +490,19 @@ export const CHAPTERS: Chapter[] = [
     kicker: 'Spin becomes a position. A camera counts photons. A hole becomes an erasure.',
     body: (
       <>
+        <Plain>
+          <p>
+            Reading an atom is delicate: you want the answer without losing the atom, because you
+            will need it again. The trick has three moves. First, force the fence-sitter to
+            commit — an internal shuffle makes the atom settle into a definite 0 or 1. Second,
+            turn that answer into a position: a tweezer slides the atom about two thousandths of
+            a millimetre to one side, but only if its answer was &ldquo;1.&rdquo; Third, take a
+            photograph. The bit is now simply which parking spot the atom sits in: home spot
+            means 0, shifted spot means 1, and both spots empty means the atom is gone. That last
+            case is surprisingly precious. Knowing <em>where</em> something went wrong makes the
+            mistake roughly twice as easy to fix as a mistake hiding in an atom that looks fine.
+          </p>
+        </Plain>
         <Primer>
           <p>
             A projective measurement is not a special opcode. It is an irreversible
@@ -446,6 +575,20 @@ export const CHAPTERS: Chapter[] = [
     kicker: 'You cannot copy a qubit. You can hide it in a pattern.',
     body: (
       <>
+        <Plain>
+          <p>
+            One atom is too flaky to trust: roughly one operation in a thousand goes wrong, and a
+            useful program needs billions of operations. Ordinary computers survive flakiness by
+            copying — store the bit three times and take a vote. But a hard law of quantum
+            mechanics says you cannot photocopy a qubit. The workaround, invented in the 1990s:
+            do not store the bit in any single atom. Hide it in a pattern shared across dozens of
+            atoms, so that no individual atom knows the secret — only the group does. Then you
+            never ask &ldquo;atom 7, are you a 0?&rdquo; (which would destroy the stored
+            information). Instead you ask small committees of atoms, &ldquo;do you all still
+            agree?&rdquo; A &ldquo;no&rdquo; pinpoints a mistake without ever revealing the
+            secret itself.
+          </p>
+        </Plain>
         <Primer>
           <p>
             A physical qubit has an error rate of order 10<sup>−3</sup> per operation
@@ -484,10 +627,24 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 'qec',
     num: '11',
-    title: 'Below-threshold correction',
-    kicker: 'A bigger code is quieter — if you tell the decoder which atoms vanished',
+    title: 'Proof that bigger is quieter',
+    kicker: 'A bigger code makes fewer mistakes — if you tell the decoder which atoms vanished',
     body: (
       <>
+        <Plain>
+          <p>
+            This is the paper&rsquo;s headline result. Hiding one bit across many atoms only pays
+            off if bigger patterns really are safer — otherwise you are spending extra atoms for
+            nothing. Theory says bigger wins only when each atom&rsquo;s error rate is below a
+            break-even point, called the threshold. So the experiment ran two sizes of pattern
+            through repeated rounds of error-fixing and compared them: the bigger pattern made
+            mistakes 2.1 times less often. That single comparison is why this paper matters —
+            it means scaling up makes things better, not worse. One ingredient proved vital:
+            telling the error-fixer which atoms had physically vanished (the photographs show
+            empty parking spots), because a known hole is far easier to repair than an error
+            hiding in an atom that looks fine.
+          </p>
+        </Plain>
         <Primer>
           <p>
             Look at the lattice. Each gold knot is one physical qubit. Crimson is a
@@ -529,6 +686,19 @@ export const CHAPTERS: Chapter[] = [
     kicker: 'Either the data do the gate, or the measurements do',
     body: (
       <>
+        <Plain>
+          <p>
+            You now have protected, encoded bits. How do you compute with them without breaking
+            the protection? Here the claw machine becomes a superpower. Because atoms can be
+            carried, you can pick up an entire encoded block, lay it on top of another block so
+            the atoms pair off, and fire one flash of light: every pair does its gate at the same
+            instant, and a mistake on any one atom stays on that atom instead of spreading
+            through the block. Machines whose qubits are bolted in place cannot do this — they
+            must slowly stitch neighbouring blocks together through many rounds of measurements.
+            The paper compares both ways head to head on the same hardware and shows the stitching
+            method is far less forgiving when measurements are imperfect.
+          </p>
+        </Plain>
         <Primer>
           <p>
             You now have a quiet encoded bit. How do you entangle two of them? Two
@@ -562,9 +732,22 @@ export const CHAPTERS: Chapter[] = [
     id: 'universal',
     num: '13',
     title: 'Every rotation you might want',
-    kicker: 'A theorem forbids a universal set of transversal unitaries. Measurement gets around it.',
+    kicker: 'A theorem forbids getting every move for free. Teleportation gets around it.',
     body: (
       <>
+        <Plain>
+          <p>
+            There is a subtle gap between &ldquo;can do gates&rdquo; and &ldquo;can compute
+            anything.&rdquo; The safe, protected gates from the last chapter only turn the
+            qubit&rsquo;s globe in clean 90-degree clicks. Universal computing needs one more
+            move: a 45-degree click. And a mathematical theorem says no error-correcting code
+            hands you every move for free — something has to give. The escape hatch: manufacture
+            a special helper block of atoms prepared in an exotic state, then teleport your data
+            through it. The data comes out the other side having received exactly the forbidden
+            45-degree turn. The figure below shows the fingerprint of that specialness: rotate
+            every atom and only the special 3D pattern survives at 45 degrees.
+          </p>
+        </Plain>
         <Primer>
           <p>
             The gates you can do “in parallel, atom by atom, without looking” are
@@ -603,6 +786,19 @@ export const CHAPTERS: Chapter[] = [
     kicker: 'Move the information. Leave the dirt on the atom you are about to reset.',
     body: (
       <>
+        <Plain>
+          <p>
+            A computer that runs for a long time cannot keep its original atoms — they get lost,
+            jostled, and scrambled. This machine&rsquo;s answer is a pit stop. It keeps
+            teleporting the information onto fresh blocks of atoms and throws the used blocks
+            away: measure them, recycle them through the pantry, reload. The information never
+            stops moving forward; the accumulated mess stays behind on atoms that are about to be
+            reset anyway, like swapping worn tyres mid-race while the car keeps going. In the
+            deepest runs they replayed the same choreography 27 times over about a second — an
+            eternity by atom standards — and the health of the encoded information stayed flat
+            instead of decaying.
+          </p>
+        </Plain>
         <Primer>
           <p>
             Every gate dumps heat: bit flips, leaked population, hotter motion,
@@ -645,6 +841,20 @@ export const CHAPTERS: Chapter[] = [
     kicker: 'The Hamiltonians are the right ones. The constants are still too large.',
     body: (
       <>
+        <Plain>
+          <p>
+            So — is it a computer? The full loop now demonstrably works: trap atoms with light,
+            carry them around, run gates, photograph the helpers, fix the mistakes, swap in fresh
+            atoms, repeat. That end-to-end loop, running below the break-even point where bigger
+            patterns beat smaller ones, is what this paper proved for the first time in this
+            platform. What the machine is not, yet, is quiet enough: each basic operation is
+            roughly twice as error-prone as it needs to be for really long programs to become
+            cheap to protect. The authors publish their punch list — stronger lasers here, better
+            vacuum there, streaming control electronics instead of pre-recorded — and nothing on
+            it requires new physics. That is the paper&rsquo;s closing claim: the remaining work
+            is engineering.
+          </p>
+        </Plain>
         <Primer>
           <p>
             You have now seen the whole object. Atoms hold clock qubits. Light

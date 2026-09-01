@@ -49,7 +49,7 @@ export function App() {
     <div className="page">
       <header className="masthead">
         <p className="site-name">
-          Neutral-atom quantum computing<span>an interactive explainer</span>
+          Neutral-atom quantum computing<span>a guide for absolutely everyone</span>
         </p>
         <p className="mast-meta">
           <a href="https://doi.org/10.1038/s41586-025-09848-5">the paper ↗</a>
@@ -90,7 +90,7 @@ export function App() {
         </nav>
 
         <article className="article">
-          <h1>How a fault-tolerant neutral-atom quantum computer works</h1>
+          <h1>How to build a quantum computer out of atoms</h1>
           <p className="based-on">
             Based on: Bluvstein, D., Geim, A.A., Li, S.H. et al. A fault-tolerant neutral-atom
             architecture for universal quantum computation. <em>Nature</em> <strong>649</strong>,
@@ -100,13 +100,17 @@ export function App() {
           </p>
 
           <section className="abstract">
-            <h2>Overview</h2>
+            <h2>How to read this guide</h2>
             <p>
-              A computer whose bits are single rubidium atoms, whose wires are moving laser
-              tweezers, and whose logic gates are 270-nanosecond flashes of Rydberg light. This
-              explainer walks through the experiment piece by piece — the atom, the light, the
-              traps, the choreography, and the error correction — with figures you can drive.
-              Every number comes from the paper; every figure says what it simplifies.
+              This is a plain-English walkthrough of a real machine: a computer whose bits are
+              single atoms, whose wires are moving laser tweezers, and whose logic gates are
+              flashes of light. Every chapter is written in three layers.{' '}
+              <strong>Level 1</strong> boxes use everyday language and assume no science
+              background — read only those, top to bottom, and you will understand the whole
+              machine. <strong>Level 2</strong> explains the physics for the curious.{' '}
+              <strong>Level 3</strong> reports exactly what the paper measured, with its numbers.
+              The figures are interactive — drag the sliders, click the step buttons — and every
+              number on this page comes from the published paper.
             </p>
           </section>
 
