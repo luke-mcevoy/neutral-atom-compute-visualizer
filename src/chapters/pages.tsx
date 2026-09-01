@@ -7,7 +7,10 @@ import { AODShuttle } from '../viz/AODShuttle.tsx';
 import { ArrayHero } from '../viz/ArrayHero.tsx';
 import { CameraMeasurement } from '../viz/CameraMeasurement.tsx';
 import { AtomLevels } from '../viz/AtomLevels.tsx';
+import { BlochDrive } from '../viz/BlochDrive.tsx';
+import { BlockadeDynamics } from '../viz/BlockadeDynamics.tsx';
 import { CodePrimer } from '../viz/CodePrimer.tsx';
+import { MachineCycle } from '../viz/MachineCycle.tsx';
 import { LogicAndMagic } from '../viz/LogicAndMagic.tsx';
 import { Processor } from '../viz/Processor.tsx';
 import { PulseRack } from '../viz/PulseRack.tsx';
@@ -110,6 +113,7 @@ export const CHAPTERS: Chapter[] = [
             shifts cancel, so a few gauss of laboratory field does not smear the sphere.
           </p>
         </Primer>
+        <BlochDrive />
         <Defense>
           <p>
             Encoding: 5S<sub>1/2</sub> hyperfine clock states, <Sym>m_F = 0</Sym>, splitting
@@ -220,6 +224,7 @@ export const CHAPTERS: Chapter[] = [
           </p>
         </Primer>
         <RydbergBlockade />
+        <BlockadeDynamics />
         <Defense>
           <p>
             Time-optimal two-photon pulse, 270 ns, 420 + 1013 nm, 4.8 GHz red of the
@@ -346,6 +351,7 @@ export const CHAPTERS: Chapter[] = [
           </p>
         </Primer>
         <Processor />
+        <MachineCycle />
         <Defense>
           <p>
             Surface-code: 55 μm / 12-row readout, two traps per atom, six interlaced

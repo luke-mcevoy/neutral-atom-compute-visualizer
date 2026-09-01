@@ -24,6 +24,12 @@ This is an **unofficial** explainer of a **published** article. It is not affili
 ## Demo
 
 <p align="center">
+  <img src="docs/cycle.png" alt="One QEC round animated: storage, entangle, read out, refill" />
+  <br />
+  <em>One round of error correction as choreography — scrub the timeline or watch it play: interleave, 270 ns CZ, readout, refill from the reservoir.</em>
+</p>
+
+<p align="center">
   <img src="docs/array.png" alt="Optical-tweezer array of rubidium atoms" />
   <br />
   <em>A small array of trapped ⁸⁷Rb atoms. Amber cones are 852 nm tweezers; the fog is |ψ|².</em>
@@ -48,7 +54,7 @@ This is an **unofficial** explainer of a **published** article. It is not affili
 A dark, Nature-styled article you can operate.
 
 - **Two voices** in every section: a physics primer with no quantum-computing jargon, then what the paper actually measured.
-- **Live figures** in the journal’s `Fig. n | title.` form: 3D |ψ|² clouds, Raman driving, Rydberg blockade, SLM holograms, AOD shuttling, surface-code patches.
+- **Live figures** in the journal’s `Fig. n | title.` form: 3D |ψ|² clouds, an animated Bloch sphere you drive with π-pulses, integrated two-atom blockade dynamics, a scrubbable error-correction round, SLM holograms, AOD shuttling, surface-code patches.
 - **Grounded claims**: 448 atoms, n = 53, 270 ns CZ, 2.14(13)× lower error at d = 5 than d = 3 on a four-round circuit — each tagged to a figure or Methods line.
 
 Sixteen sections, from the atom to below-threshold correction:

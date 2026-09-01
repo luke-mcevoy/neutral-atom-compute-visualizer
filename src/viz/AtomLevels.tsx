@@ -35,7 +35,7 @@ export function AtomLevels() {
         <Slider label="principal n" value={n} min={15} max={70} step={1} onChange={setN} />
       )}
       <Figure
-        n="1"
+        n="2"
         title="The valence electron of ⁸⁷Rb"
         caption={
           <>
