@@ -13,6 +13,7 @@ import { BlockadeDynamics } from '../viz/BlockadeDynamics.tsx';
 import { CodePrimer } from '../viz/CodePrimer.tsx';
 import { MachineCycle } from '../viz/MachineCycle.tsx';
 import { LogicAndMagic } from '../viz/LogicAndMagic.tsx';
+import { MagicPlateau } from '../viz/MagicPlateau.tsx';
 import { Processor } from '../viz/Processor.tsx';
 import { PulseRack } from '../viz/PulseRack.tsx';
 import { QubitPrimer } from '../viz/QubitPrimer.tsx';
@@ -578,6 +579,7 @@ export const CHAPTERS: Chapter[] = [
             made of digital pieces.
           </p>
         </Primer>
+        <MagicPlateau />
         <Defense>
           <p>
             Reed–Muller {PAPER.codes.reedMuller}: extra plateau at 45° only if the
