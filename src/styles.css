@@ -43,27 +43,23 @@ a:hover { text-decoration: underline; }
   background: #0d0e0f;
 }
 
-.wordmark {
+.site-name {
   margin: 0;
-  font-family: var(--serif);
-  font-size: 28px;
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: -0.03em;
-  color: var(--nature);
-  line-height: 1;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  line-height: 1.2;
 }
 
-.wordmark span {
+.site-name span {
   margin-left: 10px;
-  font-family: var(--sans);
   font-size: 12px;
-  font-style: normal;
   font-weight: 400;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted);
-  vertical-align: middle;
+  color: var(--faint);
 }
 
 .mast-meta {
@@ -95,7 +91,7 @@ a:hover { text-decoration: underline; }
   margin: 0;
   padding: 12px 14px 14px;
   border: 1px solid var(--line);
-  background: #1a1212;
+  background: var(--bg-2);
   font-family: var(--sans);
   font-size: 14px;
   line-height: 1.5;
@@ -151,70 +147,23 @@ a:hover { text-decoration: underline; }
 
 .article { min-width: 0; }
 
-.journal-line {
-  margin: 0 0 6px;
-  font-family: var(--serif);
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.article-kicker {
-  margin: 0 0 14px;
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--nature);
-}
-
 .article > h1 {
-  margin: 0 0 18px;
+  margin: 8px 0 14px;
   font-family: var(--serif);
-  font-size: 34px;
+  font-size: 33px;
   font-weight: 700;
   line-height: 1.18;
   letter-spacing: -0.02em;
   color: var(--cream);
 }
 
-.authors {
-  margin: 0 0 8px;
-  font-family: var(--sans);
-  font-size: 15px;
-  line-height: 1.45;
-  color: var(--ink);
-}
-
-.authors sup, .affil sup { font-size: 10px; }
-
-.affil, .dates {
-  margin: 0 0 8px;
+.based-on {
+  margin: 0 0 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
   font-family: var(--sans);
   font-size: 13px;
-  line-height: 1.45;
-  color: var(--muted);
-}
-
-.dates { margin-bottom: 20px; }
-
-.cite-box {
-  margin: 0 0 32px;
-  padding: 12px 0 0;
-  border-top: 1px solid var(--line);
-}
-
-.cite-box h3 {
-  margin: 0 0 6px;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.cite-box p {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--muted);
 }
 
@@ -389,18 +338,118 @@ article p em { font-style: italic; color: inherit; }
 
 .nfig-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 8px;
+}
+
+.nfig-grid > * {
+  min-width: 0;
 }
 
 .npanel {
   position: relative;
-  padding: 26px 12px 10px;
+  padding: 8px 12px 10px;
   background: #18191b;
   border: 1px solid var(--line);
 }
 
 .npanel-wide { grid-column: 1 / -1; }
+
+.npanel-dim {
+  opacity: 0.32;
+  transition: opacity 0.35s ease;
+}
+
+.npanel {
+  transition: opacity 0.35s ease;
+}
+
+.steps { margin: 0 0 14px; }
+
+.steps-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.step-chip {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 11.5px;
+  padding: 3px 9px 3px 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-chip .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  font-size: 9.5px;
+  color: var(--faint);
+}
+
+.step-chip.active {
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
+.step-chip.active .step-num {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.step-note {
+  border-left: 2px solid var(--ink);
+  background: var(--bg-2);
+  padding: 10px 14px;
+}
+
+.step-note p {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.step-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--faint);
+}
+
+.step-nav button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 11.5px;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+
+.step-nav button:not(:disabled):hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.step-nav button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
 
 .npanel-tag {
   position: absolute;
@@ -414,12 +463,12 @@ article p em { font-style: italic; color: inherit; }
 }
 
 .npanel-title {
-  position: absolute;
-  top: 8px;
-  left: 26px;
-  margin: 0;
+  margin: 0 0 8px;
+  padding-left: 20px;
+  min-height: 16px;
   font-family: var(--sans);
   font-size: 12px;
+  line-height: 1.4;
   color: var(--muted);
 }
 

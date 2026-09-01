@@ -29,14 +29,19 @@ export function Panel({
   title,
   children,
   wide,
+  dim,
 }: {
   tag: string;
   title?: string;
   children: ReactNode;
   wide?: boolean;
+  dim?: boolean;
 }) {
+  const classes = ['npanel'];
+  if (wide === true) classes.push('npanel-wide');
+  if (dim === true) classes.push('npanel-dim');
   return (
-    <div className={wide === true ? 'npanel npanel-wide' : 'npanel'}>
+    <div className={classes.join(' ')}>
       <span className="npanel-tag">{tag}</span>
       {title !== undefined ? <p className="npanel-title">{title}</p> : null}
       {children}

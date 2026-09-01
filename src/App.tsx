@@ -48,13 +48,11 @@ export function App() {
   return (
     <div className="page">
       <header className="masthead">
-        <p className="wordmark">
-          nature<span>explainer</span>
+        <p className="site-name">
+          Neutral-atom quantum computing<span>an interactive explainer</span>
         </p>
         <p className="mast-meta">
-          <a href="https://doi.org/10.1038/s41586-025-09848-5">Article</a>
-          <span>volume 649</span>
-          <span>pages 39–46 (2026)</span>
+          <a href="https://doi.org/10.1038/s41586-025-09848-5">the paper ↗</a>
         </p>
       </header>
 
@@ -92,43 +90,23 @@ export function App() {
         </nav>
 
         <article className="article">
-          <p className="journal-line">
-            <em>Nature</em> <strong>649</strong>, 39–46 (2026)
+          <h1>How a fault-tolerant neutral-atom quantum computer works</h1>
+          <p className="based-on">
+            Based on: Bluvstein, D., Geim, A.A., Li, S.H. et al. A fault-tolerant neutral-atom
+            architecture for universal quantum computation. <em>Nature</em> <strong>649</strong>,
+            39–46 (2026) ·{' '}
+            <a href="https://doi.org/10.1038/s41586-025-09848-5">doi:10.1038/s41586-025-09848-5</a>{' '}
+            · Harvard–MIT (Lukin group and collaborators)
           </p>
-          <p className="article-kicker">Article | Open access</p>
-          <h1>A fault-tolerant neutral-atom architecture for universal quantum computation</h1>
-          <p className="authors">
-            Dolev Bluvstein<sup>1,2</sup>, Alexandra A. Geim<sup>1</sup>, Sophie H. Li<sup>1</sup>, Simon J.
-            Evered<sup>1</sup>, J. Pablo Bonilla Ataides<sup>1</sup> … &amp; Mikhail D. Lukin
-            <sup>1</sup>
-          </p>
-          <p className="affil">
-            <sup>1</sup>Department of Physics, Harvard University, Cambridge, MA, USA.{' '}
-            <sup>2</sup>Present address as in the published article. Full author list and
-            affiliations: Bluvstein, Geim et al., <em>Nature</em> <strong>649</strong>, 39–46 (2026).
-          </p>
-          <p className="dates">
-            Published: 10 November 2025 · DOI:{' '}
-            <a href="https://doi.org/10.1038/s41586-025-09848-5">10.1038/s41586-025-09848-5</a>
-          </p>
-
-          <aside className="cite-box">
-            <h3>Cite this article</h3>
-            <p>
-              Bluvstein, D., Geim, A.A., Li, S.H. et al. A fault-tolerant neutral-atom architecture
-              for universal quantum computation. <em>Nature</em> <strong>649</strong>, 39–46 (2026).
-            </p>
-          </aside>
 
           <section className="abstract">
-            <h2>Abstract</h2>
+            <h2>Overview</h2>
             <p>
-              Quantum error correction is essential for large-scale quantum computers, but
-              operating on encoded logical qubits and assembling those operations into an
-              efficient architecture remains an open experimental problem. This explainer walks
-              through Bluvstein, Geim et al. (2026), who use reconfigurable arrays of up to 448{' '}
-              <sup>87</sup>Rb atoms to implement the working pieces of a universal, fault-tolerant
-              processor — and the atomic, optical, and thermodynamic physics those pieces rest on.
+              A computer whose bits are single rubidium atoms, whose wires are moving laser
+              tweezers, and whose logic gates are 270-nanosecond flashes of Rydberg light. This
+              explainer walks through the experiment piece by piece — the atom, the light, the
+              traps, the choreography, and the error correction — with figures you can drive.
+              Every number comes from the paper; every figure says what it simplifies.
             </p>
           </section>
 
@@ -145,11 +123,10 @@ export function App() {
 
           <footer className="article-foot">
             <p>
-              Interactive explainer of Bluvstein, Geim et al. <em>Nature</em> <strong>649</strong>,
-              39–46 (2026). DOI{' '}
-              <a href="https://doi.org/10.1038/s41586-025-09848-5">10.1038/s41586-025-09848-5</a>.
-              Not affiliated with Springer Nature. Dark theme; typography after the journal’s
-              article pages.
+              Unofficial interactive explainer of Bluvstein, Geim et al. <em>Nature</em>{' '}
+              <strong>649</strong>, 39–46 (2026),{' '}
+              <a href="https://doi.org/10.1038/s41586-025-09848-5">doi:10.1038/s41586-025-09848-5</a>.
+              Not affiliated with the authors or the journal.
             </p>
           </footer>
         </article>

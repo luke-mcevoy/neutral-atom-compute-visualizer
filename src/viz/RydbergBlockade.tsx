@@ -4,6 +4,7 @@ import { PAPER } from '../data/paper.ts';
 import { Slider } from '../components/Slider.tsx';
 import { Claim } from '../components/Claim.tsx';
 import { Figure, Panel } from '../components/Figure.tsx';
+import { Steps, type StepDef } from '../components/Steps.tsx';
 import { blockadeRadius, rydbergC6Scale } from '../physics/formulas.ts';
 import { AtomCloud } from '../viz3d/AtomCloud.tsx';
 import { LaserRay } from '../viz3d/Optics.tsx';
@@ -84,8 +85,9 @@ function PairPotential({
 }
 
 export function RydbergBlockade() {
+  const [step, setStep] = useState(0);
   const [n, setN] = useState<number>(PAPER.rydberg.n);
-  const [sep, setSep] = useState(10);
+  const [sep, setSep] = useState(16);
   const [drive, setDrive] = useState<number>(PAPER.rydberg.rabiMHz);
 
   const numbers = useMemo(() => {
@@ -98,8 +100,68 @@ export function RydbergBlockade() {
   const half = Math.min(3.4, sep * 0.24);
   const cloudScale = 1.3 / (2.2 * n * n);
 
+  const focus: 'a' | 'b' | 'ab' = (['b', 'a', 'a', 'ab'] as const)[step] ?? 'ab';
+
+  const steps: readonly StepDef[] = [
+    {
+      label: 'two atoms, one laser',
+      text: (
+        <>
+          Panel <strong>b</strong>: two atoms, both excited toward the same Rydberg state, both
+          lit by the same drive (the grey line through them). At this spacing the electron
+          clouds do not touch and never need to — keep that in mind, because the interaction
+          about to appear is <em>not</em> about overlap. R marks the distance between the two
+          nuclei.
+        </>
+      ),
+    },
+    {
+      label: 'the pair shift',
+      text: (
+        <>
+          Panel <strong>a</strong>: the violet curve is the van der Waals shift of the
+          doubly excited pair state |rr⟩, V(R) = C₆/R⁶ (drawn with a toy n¹¹ scaling for C₆).
+          At large R it is negligible. As the atoms get closer it climbs — steeply, because of
+          the sixth power. The cyan horizontal line is the only other energy in the problem:
+          the drive strength Ω.
+        </>
+      ),
+    },
+    {
+      label: 'inside the blockade',
+      text: (
+        <>
+          We just moved the atoms closer (red dashed line, panel <strong>a</strong>) — inside
+          the shaded region where V &gt; Ω. The laser is still resonant with <em>one</em> atom
+          going up, but the doubly excited state now misses resonance by V. Both atoms excited
+          is off the menu: the claim card below reads ON. The boundary R<sub>b</sub>, where
+          V(R) = Ω, is the blockade radius.
+        </>
+      ),
+    },
+    {
+      label: 'the gate',
+      text: (
+        <>
+          What happens instead: the pair shares <em>one</em> excitation and oscillates at the
+          enhanced rate √2 Ω — watch that emerge from the Schrödinger equation in the next
+          figure. Drive a 2π pulse in this blockaded regime and the pair returns to where it
+          started but with a conditional π phase: a controlled-Z gate. The paper runs it in
+          270 ns at ~99.6% fidelity.
+        </>
+      ),
+    },
+  ];
+
+  const applyStep = (i: number) => {
+    setStep(i);
+    if (i === 0) setSep(16);
+    if (i === 2) setSep(7);
+  };
+
   return (
     <div className="board">
+      <Steps steps={steps} current={step} onStep={applyStep} />
       <div className="board-grid">
         <Slider label="principal n" value={n} min={20} max={70} step={1} onChange={setN} />
         <Slider label="spacing (arb.)" value={sep} min={4} max={22} step={0.2} display={sep.toFixed(1)} onChange={setSep} />
@@ -118,10 +180,14 @@ export function RydbergBlockade() {
           </>
         }
       >
-        <Panel tag="a" title="Pair potential — illustrative n¹¹ scaling, not 53S spectroscopy">
+        <Panel
+          tag="a"
+          title="Pair potential — illustrative n¹¹ scaling, not 53S spectroscopy"
+          dim={focus === 'b'}
+        >
           <PairPotential n={n} sep={sep} drive={drive} />
         </Panel>
-        <Panel tag="b" title="Two atoms separated along the internuclear axis">
+        <Panel tag="b" title="Two atoms separated along the internuclear axis" dim={focus === 'a'}>
           <Stage3D camera={[0, 2.2, 9]}>
             <AtomCloud n={n} l={0} color="#8ec8ff" position={[-half, 0, 0]} count={16000} scale={cloudScale} />
             <AtomCloud n={n} l={0} color="#c9a0ff" position={[half, 0, 0]} count={16000} scale={cloudScale} />

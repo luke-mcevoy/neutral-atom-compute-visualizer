@@ -3,6 +3,7 @@ import { PAPER } from '../data/paper.ts';
 import { Slider } from '../components/Slider.tsx';
 import { Claim } from '../components/Claim.tsx';
 import { Figure, Panel } from '../components/Figure.tsx';
+import { Steps, type StepDef } from '../components/Steps.tsx';
 import {
   RB87,
   acStark,
@@ -148,10 +149,83 @@ function RamanCurves({
 }
 
 export function RamanStark() {
+  const [step, setStep] = useState(0);
   const [deltaGHz, setDeltaGHz] = useState<number>(PAPER.raman.intermediateDetuningGHz);
   const [o1, setO1] = useState(80);
   const [o2, setO2] = useState(80);
   const [probe, setProbe] = useState(1.2);
+
+  const focus: 'a' | 'b' | 'c' = (['a', 'b', 'b', 'c'] as const)[step] ?? 'a';
+
+  const steps: readonly StepDef[] = [
+    {
+      label: 'the bridge',
+      text: (
+        <>
+          Panel <strong>a</strong>: the two qubit levels |0⟩ and |1⟩ sit 6.8 GHz apart at the
+          bottom. Driving that microwave gap directly with light is impossible — so two lasers
+          build a bridge. The cyan beam takes the atom <em>toward</em> the 5P excited state, the
+          gold beam brings it back down into |1⟩. Crucially, they meet at a <em>virtual</em>{' '}
+          level a distance Δ below the real 5P line: the atom rotates from |0⟩ to |1⟩ without
+          ever actually visiting 5P.
+        </>
+      ),
+    },
+    {
+      label: 'why detune so far',
+      text: (
+        <>
+          Panel <strong>b</strong>: the trade that fixes Δ. The rotation rate (cyan curve,
+          Ω<sub>eff</sub> = Ω₁Ω₂/2Δ) falls as 1/Δ — bad. But real photon scattering off 5P,
+          which destroys the qubit, falls as 1/Δ² — twice as fast. So you detune as far as
+          laser power allows. The dashed line marks the paper&rsquo;s choice, Δ = 550 GHz,
+          giving 5×10⁻⁵ scattering events per pulse.
+        </>
+      ),
+    },
+    {
+      label: 'the imbalance knob',
+      text: (
+        <>
+          Still panel <strong>b</strong>, gold curve: we just made the two legs unequal
+          (Ω₁ ≠ Ω₂). Each beam also Stark-shifts the level it touches, and unequal beams shift
+          |0⟩ and |1⟩ differently: δ<sub>AC</sub> = (Ω₁² − Ω₂²)/4Δ. That looks exactly like a
+          fake magnetic field along z — a phase error accumulating on every atom the beam
+          grazes. Balancing the legs, and composite pulses like SCROFULOUS, is how the paper
+          cancels it.
+        </>
+      ),
+    },
+    {
+      label: 'in space',
+      text: (
+        <>
+          Panel <strong>c</strong>: the same three beams as geometry. The amber cone is the
+          852 nm tweezer holding the atom. The cyan and gold rays are the two Raman legs
+          crossing at the atom. The red cone from above is the separate 1,529 nm shield beam:
+          it Stark-shifts only the 5P level, detuning stored atoms out of reach of imaging
+          light scattered from the readout zone 50 μm away.
+        </>
+      ),
+    },
+  ];
+
+  const applyStep = (i: number) => {
+    setStep(i);
+    if (i === 1) {
+      setDeltaGHz(PAPER.raman.intermediateDetuningGHz);
+      setO1(80);
+      setO2(80);
+    }
+    if (i === 2) {
+      setO1(160);
+      setO2(60);
+    }
+    if (i === 3) {
+      setO1(80);
+      setO2(80);
+    }
+  };
 
   const computed = useMemo(() => {
     const delta = deltaGHz * 1e9;
@@ -170,6 +244,7 @@ export function RamanStark() {
 
   return (
     <div className="board">
+      <Steps steps={steps} current={step} onStep={applyStep} />
       <div className="board-grid">
         <Slider
           label="Raman intermediate detuning Δ"
@@ -208,13 +283,13 @@ export function RamanStark() {
           </>
         }
       >
-        <Panel tag="a" title="Λ system">
+        <Panel tag="a" title="Λ system" dim={focus !== 'a'}>
           <LambdaDiagram deltaGHz={deltaGHz} o1={o1} o2={o2} />
         </Panel>
-        <Panel tag="b" title="Live two-level curves">
+        <Panel tag="b" title="Live two-level curves" dim={focus !== 'b'}>
           <RamanCurves deltaGHz={deltaGHz} o1={o1} o2={o2} />
         </Panel>
-        <Panel tag="c" title="Beam geometry (not to scale)" wide>
+        <Panel tag="c" title="Beam geometry (not to scale)" wide dim={focus !== 'c'}>
           <Stage3D camera={[2.4, 1.8, 5.2]}>
             <TweezerBeam />
             <AtomCloud n={5} l={0} color={o1 === o2 ? '#8ec8ff' : '#f3d48a'} count={16000} />
